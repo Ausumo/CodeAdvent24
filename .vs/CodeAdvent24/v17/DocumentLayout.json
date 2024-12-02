@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{C4EADD5A-97EC-4B70-8CED-89B9B7CB2B8B}|CodeAdvent24.vcxproj|solutionrelative:CodeAdvent24.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C4EADD5A-97EC-4B70-8CED-89B9B7CB2B8B}|CodeAdvent24.vcxproj|C:\\Users\\score\\source\\repos\\CodeAdvent24\\input.txt||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C4EADD5A-97EC-4B70-8CED-89B9B7CB2B8B}|CodeAdvent24.vcxproj|solutionrelative:input.txt||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C4EADD5A-97EC-4B70-8CED-89B9B7CB2B8B}|CodeAdvent24.vcxproj|C:\\Users\\score\\source\\repos\\CodeAdvent24\\CodeAdvent24.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C4EADD5A-97EC-4B70-8CED-89B9B7CB2B8B}|CodeAdvent24.vcxproj|solutionrelative:CodeAdvent24.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,14 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "input.txt",
+              "DocumentMoniker": "C:\\Users\\score\\source\\repos\\CodeAdvent24\\input.txt",
+              "RelativeDocumentMoniker": "input.txt",
+              "ToolTip": "C:\\Users\\score\\source\\repos\\CodeAdvent24\\input.txt",
+              "RelativeToolTip": "input.txt",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAAANoDAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-12-02T18:09:18.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "CodeAdvent24.h",
               "DocumentMoniker": "C:\\Users\\score\\source\\repos\\CodeAdvent24\\CodeAdvent24.h",
               "RelativeDocumentMoniker": "CodeAdvent24.h",
               "ToolTip": "C:\\Users\\score\\source\\repos\\CodeAdvent24\\CodeAdvent24.h",
               "RelativeToolTip": "CodeAdvent24.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-01T14:52:48.217Z",
+              "WhenOpened": "2024-12-02T19:01:31.631Z",
               "EditorCaption": ""
             },
             {
@@ -45,7 +62,7 @@
               "RelativeDocumentMoniker": "CodeAdvent24.cpp",
               "ToolTip": "C:\\Users\\score\\source\\repos\\CodeAdvent24\\CodeAdvent24.cpp",
               "RelativeToolTip": "CodeAdvent24.cpp",
-              "ViewState": "AgIAAE0EAAAAAAAAAAAMwGUEAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAhwGsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-01T14:46:52.379Z",
               "EditorCaption": ""

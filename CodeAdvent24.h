@@ -2,9 +2,15 @@
 #include <vector>
 #include <string>
 
-std::vector<size_t> leftCoords;
-std::vector<size_t> rightCoords;
+//Day Two++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+bool IsNeighbourValid(int current, int neighbour);
+std::vector<std::string> SplitString(const std::string& string, const std::string& delimiter);
+bool isLineValid(const std::vector<int>& line);
+bool isLineSafeWithOneRemoval(const std::vector<int>& line);
 
+//Day One++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//std::vector<size_t> leftCoords;
+//std::vector<size_t> rightCoords;
 std::vector<size_t> SortNumbers(std::vector<size_t> currentList);
 std::vector<std::string> SortString(const std::string& input);
 size_t stringToSizeT(const std::string& string);

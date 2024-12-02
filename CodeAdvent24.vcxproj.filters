@@ -25,6 +25,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="coords.json" />
+    <None Include="input.txt" />
   </ItemGroup>
 </Project>
