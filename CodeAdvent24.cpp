@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <fstream>
+#include <regex>
 #include "./CodeAdvent24.h"
 
 int main()
@@ -11,117 +12,180 @@ int main()
     std::ifstream file("input.txt");
     std::string line;
 
-    std::vector<std::string> lines;
+    //std::vector<std::string> lines;
 
-    if (file.is_open())
-        while (std::getline(file, line))
+    if (file.is_open()) {
+        /*while (std::getline(file, line))
         {
-            lines.push_back(line);
+            input += line;
+        }*/
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        line = buffer.str();
+
+        line += "don't()";
+    }
+
+    //Day One++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //std::vector<std::string> result;
+        //std::vector<size_t> numbers;
+
+        ////split string
+        //result = SortString(coords);
+
+        ////all string numbers to size_t
+        //for (std::string coord : result)
+        //{
+        //    numbers.push_back(stringToSizeT(coord));
+        //}
+
+        ////split in two Lists
+        //for (size_t i = 0; i < numbers.size(); i++)
+        //{
+        //    if (i % 2 != 0) {    
+        //        rightCoords.push_back(numbers[i]);
+        //    }
+        //    else {
+        //        leftCoords.push_back(numbers[i]);
+        //    }
+        //}
+
+        ////Sort list in the right way - smallest to highest
+        //leftCoords = SortNumbers(leftCoords);
+        //rightCoords = SortNumbers(rightCoords);
+
+        ////check how much is the leftNumber in the rightList
+        //
+        //std::cout << "EqualNumber: \n";
+        //std::cout << (IsEuqualToRightList(leftCoords, rightCoords));
+
+
+        ////Check Coords
+        //std::vector<int> distances;
+        //for (int i = 0; i < leftCoords.size(); i++)
+        //{
+        //    int distance;
+        //    distance = leftCoords[i] - rightCoords[i];
+        //    distance = std::abs(distance);
+
+        //    distances.push_back(distance);
+        //}
+
+        ////Addiere all Distances
+        //size_t endResult = 0;
+        //for (size_t number : distances)
+        //{
+        //    endResult += number;
+        //}
+
+        ////print leftSide
+        //std::cout << "\n Left Coords: \n";
+        //for (size_t coord : leftCoords)
+        //{
+        //    std::cout << coord << std::endl;
+        //}
+        ////print rightSide
+        //std::cout << "Right Coords: \n";
+        //for (size_t coord : rightCoords)
+        //{
+        //    std::cout << coord << std::endl;
+        //}
+        ////print distances
+        //std::cout << "ALL DISTANCES: \n";
+        //for (size_t coord : distances)
+        //{
+        //    std::cout << coord << std::endl;
+        //}
+        ////print endResult
+        //std::cout << "RESULT: \n";
+        //std::cout << endResult << std::endl;
+
+    //Day Two++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //std::vector<std::vector<int>> intResult;
+
+        //std::vector<int> numbers;
+
+        //int validLines = 0;
+
+        ////Make it to int
+        //for (const std::string& string : lines)
+        //{
+        //    std::vector<std::string> finalString;
+        //    finalString = SplitString(string, " ");
+        //    for (const std::string& str : finalString) {
+        //        numbers.push_back(stringToSizeT(str));
+        //    }
+
+        //    intResult.push_back(numbers);
+        //    numbers.clear();
+
+        //}
+
+        //for (const auto& line : intResult) {
+        //    if (isLineValid(line) || isLineSafeWithOneRemoval(line)) {
+        //        validLines++; 
+        //    } 
+        //}
+
+        //std::cout << std::to_string(validLines);
+
+    //Day Three++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //std::cout << line << std::endl;
+
+    std::regex regexPattern(R"(do\(\)|don't\(\)|mul\((\d+),(\d+)\))");
+    std::regex mulRegexPattern(R"(mul\((\d+),(\d+)\))");
+
+    std::smatch matches;
+    int totalSum = 0;
+    bool mulEnabled = true;
+    std::vector<std::string> stringList;
+
+    std::string::const_iterator searchStart(line.cbegin());
+
+    while (searchStart != line.cend()) {
+        if (std::regex_search(searchStart, line.cend(), matches, regexPattern)) {
+            //std::cout << "Gefunden: " << matches[0] << std::endl;
+            stringList.push_back(matches[0].str());
+            searchStart = matches.suffix().first;
         }
+    }
 
-//Day One++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //std::vector<std::string> result;
-    //std::vector<size_t> numbers;
-
-    ////split string
-    //result = SortString(coords);
-
-    ////all string numbers to size_t
-    //for (std::string coord : result)
-    //{
-    //    numbers.push_back(stringToSizeT(coord));
-    //}
-
-    ////split in two Lists
-    //for (size_t i = 0; i < numbers.size(); i++)
-    //{
-    //    if (i % 2 != 0) {    
-    //        rightCoords.push_back(numbers[i]);
-    //    }
-    //    else {
-    //        leftCoords.push_back(numbers[i]);
-    //    }
-    //}
-
-    ////Sort list in the right way - smallest to highest
-    //leftCoords = SortNumbers(leftCoords);
-    //rightCoords = SortNumbers(rightCoords);
-
-    ////check how much is the leftNumber in the rightList
-    //
-    //std::cout << "EqualNumber: \n";
-    //std::cout << (IsEuqualToRightList(leftCoords, rightCoords));
-
-
-    ////Check Coords
-    //std::vector<int> distances;
-    //for (int i = 0; i < leftCoords.size(); i++)
-    //{
-    //    int distance;
-    //    distance = leftCoords[i] - rightCoords[i];
-    //    distance = std::abs(distance);
-
-    //    distances.push_back(distance);
-    //}
-
-    ////Addiere all Distances
-    //size_t endResult = 0;
-    //for (size_t number : distances)
-    //{
-    //    endResult += number;
-    //}
-
-    ////print leftSide
-    //std::cout << "\n Left Coords: \n";
-    //for (size_t coord : leftCoords)
-    //{
-    //    std::cout << coord << std::endl;
-    //}
-    ////print rightSide
-    //std::cout << "Right Coords: \n";
-    //for (size_t coord : rightCoords)
-    //{
-    //    std::cout << coord << std::endl;
-    //}
-    ////print distances
-    //std::cout << "ALL DISTANCES: \n";
-    //for (size_t coord : distances)
-    //{
-    //    std::cout << coord << std::endl;
-    //}
-    ////print endResult
-    //std::cout << "RESULT: \n";
-    //std::cout << endResult << std::endl;
-    
-//Day Two++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    std::vector<std::vector<int>> intResult;
-
-    std::vector<int> numbers;
-
-    int validLines = 0;
-
-    //Make it to int
-    for (const std::string& string : lines)
+    for (std::string str : stringList)
     {
-        std::vector<std::string> finalString;
-        finalString = SplitString(string, " ");
-        for (const std::string& str : finalString) {
-            numbers.push_back(stringToSizeT(str));
+        if (str == "don't()") {
+            mulEnabled = false;
+        }
+        else if (str == "do()") {
+            mulEnabled = true;
         }
 
-        intResult.push_back(numbers);
-        numbers.clear();
+        if (mulEnabled) {
 
+
+            std::cout << str << std::endl;
+
+            std::smatch matchesRechnung;
+            std::string::const_iterator searchStartRechnung(str.cbegin());
+
+            while (std::regex_search(searchStartRechnung, str.cend(), matchesRechnung, mulRegexPattern)) {
+                int num1 = std::stoi(matchesRechnung[1]);
+                int num2 = std::stoi(matchesRechnung[2]);
+                int product = num1 * num2;
+
+                totalSum += product;
+
+                std::cout << "Gefunden: " << matchesRechnung[0] << " -> Produkt: " << product << std::endl;
+
+                searchStartRechnung = matchesRechnung.suffix().first;
+            }
+        }
+        std::cout << "Gesamtsumme der Produkte: " << totalSum << std::endl;
     }
 
-    for (const auto& line : intResult) {
-        if (isLineValid(line) || isLineSafeWithOneRemoval(line)) {
-            validLines++; 
-        } 
-    }
-
-    std::cout << std::to_string(validLines);
+    //std::cout << "Summe: " << totalSum << std::endl;
 }
+//END MAIN --------------------------------------------------------------------------------------------------------------------
+
 //Day Two++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 std::vector<std::string> SplitString(const std::string& string, const std::string& delimiter)
 {
