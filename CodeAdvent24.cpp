@@ -12,18 +12,18 @@ int main()
     std::ifstream file("input.txt");
     std::string line;
 
-    //std::vector<std::string> lines;
+    std::vector<std::string> lines;
 
     if (file.is_open()) {
-        /*while (std::getline(file, line))
+        while (std::getline(file, line))
         {
-            input += line;
-        }*/
-        std::stringstream buffer;
+            lines.push_back(line);
+        }
+        /*std::stringstream buffer;
         buffer << file.rdbuf();
-        line = buffer.str();
+        line = buffer.str();*/
 
-        line += "don't()";
+        //line += "don't()";
     }
 
     //Day One++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -132,59 +132,133 @@ int main()
     //Day Three++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //std::cout << line << std::endl;
 
-    std::regex regexPattern(R"(do\(\)|don't\(\)|mul\((\d+),(\d+)\))");
-    std::regex mulRegexPattern(R"(mul\((\d+),(\d+)\))");
+    //std::regex regexPattern(R"(do\(\)|don't\(\)|mul\((\d+),(\d+)\))");
+    //std::regex mulRegexPattern(R"(mul\((\d+),(\d+)\))");
 
-    std::smatch matches;
-    int totalSum = 0;
-    bool mulEnabled = true;
-    std::vector<std::string> stringList;
+    //std::smatch matches;
+    //int totalSum = 0;
+    //bool mulEnabled = true;
+    //std::vector<std::string> stringList;
 
-    std::string::const_iterator searchStart(line.cbegin());
+    //std::string::const_iterator searchStart(line.cbegin());
 
-    while (searchStart != line.cend()) {
-        if (std::regex_search(searchStart, line.cend(), matches, regexPattern)) {
-            //std::cout << "Gefunden: " << matches[0] << std::endl;
-            stringList.push_back(matches[0].str());
-            searchStart = matches.suffix().first;
-        }
-    }
+    //while (searchStart != line.cend()) {
+    //    if (std::regex_search(searchStart, line.cend(), matches, regexPattern)) {
+    //        //std::cout << "Gefunden: " << matches[0] << std::endl;
+    //        stringList.push_back(matches[0].str());
+    //        searchStart = matches.suffix().first;
+    //    }
+    //}
 
-    for (std::string str : stringList)
-    {
-        if (str == "don't()") {
-            mulEnabled = false;
-        }
-        else if (str == "do()") {
-            mulEnabled = true;
-        }
+    //for (std::string str : stringList)
+    //{
+    //    if (str == "don't()") {
+    //        mulEnabled = false;
+    //    }
+    //    else if (str == "do()") {
+    //        mulEnabled = true;
+    //    }
 
-        if (mulEnabled) {
+    //    if (mulEnabled) {
 
 
-            std::cout << str << std::endl;
+    //        std::cout << str << std::endl;
 
-            std::smatch matchesRechnung;
-            std::string::const_iterator searchStartRechnung(str.cbegin());
+    //        std::smatch matchesRechnung;
+    //        std::string::const_iterator searchStartRechnung(str.cbegin());
 
-            while (std::regex_search(searchStartRechnung, str.cend(), matchesRechnung, mulRegexPattern)) {
-                int num1 = std::stoi(matchesRechnung[1]);
-                int num2 = std::stoi(matchesRechnung[2]);
-                int product = num1 * num2;
+    //        while (std::regex_search(searchStartRechnung, str.cend(), matchesRechnung, mulRegexPattern)) {
+    //            int num1 = std::stoi(matchesRechnung[1]);
+    //            int num2 = std::stoi(matchesRechnung[2]);
+    //            int product = num1 * num2;
 
-                totalSum += product;
+    //            totalSum += product;
 
-                std::cout << "Gefunden: " << matchesRechnung[0] << " -> Produkt: " << product << std::endl;
+    //            std::cout << "Gefunden: " << matchesRechnung[0] << " -> Produkt: " << product << std::endl;
 
-                searchStartRechnung = matchesRechnung.suffix().first;
-            }
-        }
-        std::cout << "Gesamtsumme der Produkte: " << totalSum << std::endl;
-    }
+    //            searchStartRechnung = matchesRechnung.suffix().first;
+    //        }
+    //    }
+    //    std::cout << "Gesamtsumme der Produkte: " << totalSum << std::endl;
+    //}
 
     //std::cout << "Summe: " << totalSum << std::endl;
+
+//Day Four ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    int totalCount = countXmas(lines);
+    std::cout << "Das Wort 'mas' kommt " << totalCount << " Mal vor." << std::endl;
+
 }
 //END MAIN --------------------------------------------------------------------------------------------------------------------
+
+//Day Four+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+bool isValidPosition(int x, int y, int rows, int cols) {
+    return x >= 0 && x < rows && y >= 0 && y < cols;
+}
+
+bool checkXpattern(const std::vector<std::string>& grid, int startX, int startY) {
+    std::string target2 = "SSAMM";
+    std::string target3 = "MMASS";
+    std::string target4 = "SMASM";
+    std::string target5 = "MSAMS";
+
+    //bool match1 = true;
+    bool match2 = true;
+    bool match3 = true;
+    bool match4 = true;
+    bool match5 = true;
+
+    int count = 0;
+    int rows = grid.size();
+    int cols = grid[0].size();
+
+    std::vector<std::pair<int, int>> positions = { { 0, 0 }, { 0, 2 }, { 1, 1 }, { 2, 0 }, { 2, 2 } };
+
+    for (int i = 0; i < positions.size(); ++i) {
+        int newX = startX + positions[i].first;
+        int newY = startY + positions[i].second;
+
+        if (!isValidPosition(newX, newY, rows, cols) || grid[newX][newY] != target2[i]) {
+            match2 = false;
+        }
+
+        if (!isValidPosition(newX, newY, rows, cols) || grid[newX][newY] != target3[i]) {
+            match3 = false;
+        }
+
+        if (!isValidPosition(newX, newY, rows, cols) || grid[newX][newY] != target4[i]) {
+            match4 = false;
+        }
+
+        if (!isValidPosition(newX, newY, rows, cols) || grid[newX][newY] != target5[i]) {
+            match5 = false;
+        }
+    }
+
+    return match2 || match3 || match4 || match5;
+}
+
+int countXmas(const std::vector<std::string>& grid) {
+
+    int count = 0; 
+
+    int rows = grid.size();
+    int cols = grid[0].size();
+
+    
+
+    for (int x = 0; x < rows - 2; ++x) {
+        for (int y = 0; y < cols - 2; ++y) {
+            if (checkXpattern(grid, x, y)) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
 
 //Day Two++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 std::vector<std::string> SplitString(const std::string& string, const std::string& delimiter)
